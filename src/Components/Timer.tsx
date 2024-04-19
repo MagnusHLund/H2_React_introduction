@@ -22,7 +22,7 @@ const Timer: React.FC = () => {
     <div>
       <b>Assignment 1:</b>
       <ShowNumber numberToShow={time} />
-      <button onClick={fastForwardTime} />
+      <button onClick={fastForwardTime}>Fast forward time</button>
     </div>
   )
 }
