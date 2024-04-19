@@ -1,0 +1,30 @@
+import { useEffect, useState } from 'react'
+import ShowNumber from './ShowNumber'
+
+// This component is assignment 2, 3
+
+const Timer: React.FC = () => {
+  const [time, setTime] = useState(0)
+
+  const fastForwardTime = () => {
+    setTime(time + 1)
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(time + 1)
+    }, 1000)
+
+    return () => clearInterval(interval)
+  })
+
+  return (
+    <div>
+      <b>Assignment 1:</b>
+      <ShowNumber numberToShow={time} />
+      <button onClick={fastForwardTime} />
+    </div>
+  )
+}
+
+export default Timer
