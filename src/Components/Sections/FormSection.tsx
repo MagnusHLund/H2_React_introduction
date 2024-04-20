@@ -1,6 +1,6 @@
 import Form from '../Form'
 import Alert from '../Alert'
-import { createContext, useState } from 'react'
+import { createContext, useMemo, useState } from 'react'
 
 type formSubmitContextType = {
   formName: string | undefined
@@ -23,10 +23,14 @@ const FormSection: React.FC = () => {
     setFormEmail(newEmailValue)
   }
 
-  // TODO: Use the Use memo hook, to optimize the useContext provider
+  const value = useMemo(
+    () => ({ formName, formEmail, setValues }),
+    [formName, formEmail]
+  )
+
   return (
     <div>
-      <formSubmitContext.Provider value={{ formName, formEmail, setValues }}>
+      <formSubmitContext.Provider value={value}>
         <Form title="Personal information" />
         <Alert output={`name: ${formName} Email: ${formEmail}`} />
       </formSubmitContext.Provider>
